@@ -17,7 +17,12 @@ namespace Exercises.Level1
         /// </summary>
         public int CountEvens(int[] nums)
         {
-            throw new NotImplementedException();
+            int j = 0;
+            for(int i=0; i<nums.Length; i++)
+            {
+                if(nums[i]%2==0) { j++; }
+            }
+            return j;
         }
 
         /// <summary>
@@ -31,7 +36,14 @@ namespace Exercises.Level1
         /// </summary>
         public int BigDiff(int[] nums)
         {
-            throw new NotImplementedException();
+            int Min = nums[0];
+            int Max = nums[0];
+            for(int i=1; i<nums.Length;i++)
+            {
+                Min = Math.Min(Min, nums[i]);
+                Max = Math.Max(Max, nums[i]);
+            }
+            return Max - Min;
         }
 
         /// <summary>
@@ -47,7 +59,16 @@ namespace Exercises.Level1
         /// </summary>
         public int CenteredAverage(int[] nums)
         {
-            throw new NotImplementedException();
+            int Min = nums[0];
+            int Max = nums[0];
+            int Sum = nums[0];
+            for (int i = 1; i < nums.Length; i++)
+            {
+                Sum += nums[i];
+                Min = Math.Min(Min, nums[i]);
+                Max = Math.Max(Max, nums[i]);
+            }
+            return (Sum-Min-Max)/(nums.Length-2);
         }
 
         /// <summary>
@@ -61,7 +82,14 @@ namespace Exercises.Level1
         /// </summary>
         public int Sum13(int[] nums)
         {
-            throw new NotImplementedException();
+            if(nums.Length==0) { return 0; }
+            int Sum = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == 13) { i++;  continue; }
+                Sum += nums[i];
+            }
+            return Sum;
         }
 
         /// <summary>
@@ -75,7 +103,14 @@ namespace Exercises.Level1
         /// </summary>
         public int Sum67(int[] nums)
         {
-            throw new NotImplementedException();
+            if (nums.Length == 0) { return 0; }
+            int Sum = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == 6) { while (nums[i] != 7) { i++;} continue; }
+                Sum += nums[i];
+            }
+            return Sum;
         }
 
         /// <summary>
