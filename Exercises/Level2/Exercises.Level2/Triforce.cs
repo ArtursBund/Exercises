@@ -42,7 +42,7 @@ namespace Exercises.Level2
 
         public string[] GetTriforce(int n)
         {
-            //Izveido references trīstūri
+            //Izveido references trīsstūri
 
             string star = "*";
             string[] triangle = new string[n];
@@ -59,7 +59,7 @@ namespace Exercises.Level2
                 }
             }
 
-            // Izveido pilno trīstūri
+            // Izveido pilno trīsstūri
             string[] triangleF = new string[2 * n];
             for (int i = 0; i < n; i++)
             {

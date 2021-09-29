@@ -15,7 +15,7 @@ namespace Exercises.Level2.Tests
                 "    * *",
                 "   *   *",
                 "  *     *",
-                " * home  *",
+                " * Hello *",
                 "***********",
             };
 
@@ -41,7 +41,7 @@ namespace Exercises.Level2.Tests
             };
 
             string[] words = new string[] { "a", "beautiful", "home" };
-
+            
             Assert.Equal(expected, _wordsInTriangle.GetWordInTriangle(words));
         }
 
@@ -62,8 +62,8 @@ namespace Exercises.Level2.Tests
                 "*******************",
             };
 
-            string[] words = new string[] { "suneshide", "is", "great" };
-
+            string[] words = new string[] { "sunshine", "is", "great" };
+            
             Assert.Equal(expected, _wordsInTriangle.GetWordInTriangle(words));
         }
 

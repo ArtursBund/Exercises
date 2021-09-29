@@ -18,7 +18,39 @@ namespace Exercises.Level2
         /// <returns></returns>
         public string[] GetArt(string[] letters, string word , int h, int l)
         {
-            throw new NotImplementedException();
+            int Len = word.Length;
+            char[] let = new char[Len];
+            char[] let_2 = new char[letters[0].Length];
+            int i = 0;
+            int t = 0;
+            int[] Pos = new int[Len];
+            string[] rez = new string[h];
+            
+            foreach (char c in word)
+            {
+                Pos[i] = char.ToUpper(c) - 64;
+                if(Pos[i]==0) { Pos[i] = 27; }
+                i++;
+            }
+
+            for (int j=0;j<h;j++)
+            {
+                rez[j] = null;
+                t = 0;
+                foreach(char c in letters[j])
+                {
+                    let_2[t] = c;
+                    t++;
+                }
+                foreach(int n in Pos)
+                {
+                    for (int k = 1; k <= l; k++)
+                    {
+                        rez[j] = rez[j]+let_2[l*(n-1)-1+k];
+                    }
+                }
+            }
+            return rez;
         }
     }
 }
