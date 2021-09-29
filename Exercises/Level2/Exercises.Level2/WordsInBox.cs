@@ -18,7 +18,15 @@ namespace Exercises.Level2
         /// <returns></returns>
         public string[] GetBox(string word)
         {
-            throw new NotImplementedException();
+            string[] box = new string[3];
+            int Len = word.Length;
+            for (int i = 0; i < Len + 4; i++)
+            {
+                box[0] = box[0] + "*";
+                box[2] = box[2] + "*";
+            }
+            box[1] = "* " + word + " *";
+            return box;
         }
     }
 }

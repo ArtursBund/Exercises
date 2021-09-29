@@ -27,7 +27,14 @@ namespace Exercises.Level2
         /// <returns></returns>
         public string[] GetHalfTriangle(int n)
         {
-            throw new NotImplementedException();
+            string star = "*";
+            string[] triangle = new string[n];
+            for(int i=0; i<n; i++)
+            {
+                triangle[i] = star;
+                star = star + "**";
+            }
+            return triangle;
         }
     }
 }

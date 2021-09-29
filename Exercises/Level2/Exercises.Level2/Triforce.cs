@@ -42,7 +42,40 @@ namespace Exercises.Level2
 
         public string[] GetTriforce(int n)
         {
-            throw new NotImplementedException();
+            //Izveido references trīstūri
+
+            string star = "*";
+            string[] triangle = new string[n];
+            for (int i = 0; i < n; i++)
+            {
+                triangle[i] = star;
+                star = star + "**";
+            }
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    triangle[n - 1 - i] = " " + triangle[n - 1 - i];
+                }
+            }
+
+            // Izveido pilno trīstūri
+            string[] triangleF = new string[2 * n];
+            for (int i = 0; i < n; i++)
+            {
+                triangleF[i] = triangle[i];
+                triangleF[n+i] = triangle[i];
+                for (int j = 0; j < n; j++)
+                {
+                    triangleF[i] = " " + triangleF[i];
+                }
+                for (int j = 0; j <= n-1-i; j++)
+                {
+                    triangleF[n+i] = triangleF[n + i] + " ";
+                }
+                triangleF[n + i] = triangleF[n + i]+ triangle[i];
+            }
+            return triangleF;
         }
     }
 }

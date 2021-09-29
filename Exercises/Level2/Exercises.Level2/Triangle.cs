@@ -29,7 +29,21 @@ namespace Exercises.Level2
         /// <returns></returns>
         public string[] GetTRiangle(int n)
         {
-            throw new NotImplementedException();
+            string star = "*";
+            string[] triangle = new string[n];
+            for (int i = 0; i < n; i++)
+            {
+                triangle[i] = star;
+                star = star + "**";
+            }
+            for (int i = 0; i < n; i++)
+            {
+                for(int j=0; j<i;j++)
+                {
+                    triangle[n - 1 - i] = " " + triangle[n - 1 - i];
+                }
+            }
+            return triangle;
         }
     }
 }
