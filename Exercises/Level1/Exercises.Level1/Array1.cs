@@ -462,9 +462,21 @@ namespace Exercises.Level1
         /// </summary>
         public int[] Front11(int[] a, int[] b)
         {
-            if(a.Length == 0 && b.Length == 0) { return new int[0]; }
-            if(a.Length==0) { return new int[1] { b[0] }; }
-            if (b.Length == 0) { return new int[1] { a[0] }; }
+            if(a.Length == 0 && b.Length == 0) 
+            { 
+                return new int[0]; 
+            }
+
+            if(a.Length==0) 
+            { 
+                return new int[1] { b[0] }; 
+            }
+            
+            if(b.Length == 0) 
+            { 
+                return new int[1] { a[0] }; 
+            }
+
             return new int[2] { a[0], b[0] };
         }
     }
