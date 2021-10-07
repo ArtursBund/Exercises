@@ -400,17 +400,17 @@ namespace Exercises.Level1
         /// </summary>
         public bool TwoTwo(int[] nums)
         {
-            // vēl nav
             if(nums.Length<2) { return false; }
             for (int i = 0; i < nums.Length; i++)
             {
-                if (nums[i] == 2 && i == nums.Length - 1 ? nums[i] != 2 : nums[i + 1] == 2)
+                if (nums[i] == 2 && (i == nums.Length - 1 ? nums[i-1] == 2 : nums[i + 1] == 2))
                 {
-                    i = i++;
+                    i = i+2;
                     continue;
                 }
-                if (nums[i] == 2 && i == nums.Length - 1 ? nums[i-1] != 2 : nums[i + 1] != 2)
+                if (nums[i] == 2 && (i == nums.Length - 1 ? nums[i-1] != 2 : nums[i + 1] != 2))
                 {
+
                     return false;
                 }
                 
@@ -516,10 +516,12 @@ namespace Exercises.Level1
                 if(nums[i]%10==0)
                 {
                     n = nums[i];
-                    i++;
-                    while(nums[i]%10!=0)
+                    if (i == nums.Length-1) { break; }
+                    while (nums[i+1] % 10 != 0)
                     {
-                        nums[i] = n;
+                        nums[i+1] = n;
+                        i++;
+                        if (i+1==nums.Length) { break; }
                     }
                 }
             }
