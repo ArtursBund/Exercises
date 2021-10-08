@@ -539,7 +539,17 @@ namespace Exercises.Level1
         /// </summary>
         public int[] Pre4(int[] nums)
         {
-            throw new NotImplementedException();
+            int n = 0;
+            for(int i=0; i<nums.Length; i++)
+            {
+                if (nums[i] == 4) { n=i; break; }
+            }
+            int[] rez = new int[n];
+            for(int i=0;i<rez.Length;i++)
+            {
+                rez[i]=nums[i];
+            }
+            return rez;
         }
 
         /// <summary>
@@ -553,7 +563,17 @@ namespace Exercises.Level1
         /// </summary>
         public int[] Post4(int[] nums)
         {
-            throw new NotImplementedException();
+            int n = 0;
+            for (int i = nums.Length-1; i >=0; i--)
+            {
+                if (nums[i] == 4) { n = i; break; }
+            }
+            int[] rez = new int[nums.Length-n-1];
+            for (int i = n+1; i < nums.Length; i++)
+            {
+                rez[i-n-1] = nums[i];
+            }
+            return rez;
         }
 
         /// <summary>
@@ -567,7 +587,14 @@ namespace Exercises.Level1
         /// </summary>
         public int[] NotAlone(int[] nums, int val)
         {
-            throw new NotImplementedException();
+            for (int i = 1; i < nums.Length-1; i++)
+            {
+                if (nums[i] == val && nums[i]!=nums[i-1] && nums[i]!=nums[i+1]) 
+                {
+                    nums[i] = Math.Max(nums[i - 1], nums[i + 1]);
+                }
+            }
+            return nums;
         }
 
         /// <summary>
@@ -582,7 +609,17 @@ namespace Exercises.Level1
         /// </summary>
         public int[] ZeroFront(int[] nums)
         {
-            throw new NotImplementedException();
+            for(int i=0;i<nums.Length;i++)
+            {
+                if(nums[i]!=0)
+                {
+                    for(int j=i+1;j<nums.Length;j++)
+                    {
+                        if (nums[j] == 0) { (nums[i], nums[j]) = (nums[j], nums[i]); break; }
+                    }
+                }
+            }
+            return nums;
         }
 
         /// <summary>
@@ -597,7 +634,21 @@ namespace Exercises.Level1
         /// </summary>
         public int[] WithoutTen(int[] nums)
         {
-            throw new NotImplementedException();
+            int n = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == 10)
+                {
+                    nums[i] = 0;
+                    for (int j = i+1; j < nums.Length-n; j++)
+                    {
+                        (nums[j-1], nums[j]) = (nums[j], nums[j-1]);
+                    }
+                    n++;
+                    i--;
+                }
+            }
+            return nums;
         }
 
         /// <summary>
@@ -611,7 +662,20 @@ namespace Exercises.Level1
         /// </summary>
         public int[] ZeroMax(int[] nums)
         {
-            throw new NotImplementedException();
+            int n=0;
+            for(int i=0;i<nums.Length;i++)
+            {
+                if(nums[i]==0)
+                {
+                for(int j=i+1;j<nums.Length;j++)
+                    {
+                        if (nums[j] % 2 == 1) { n = Math.Max(n, nums[j]); }
+                    }
+                    nums[i] = n;
+                    n = 0;
+                }
+            }
+            return nums;
         }
 
         /// <summary>
@@ -626,7 +690,17 @@ namespace Exercises.Level1
         /// </summary>
         public int[] EvenOdd(int[] nums)
         {
-            throw new NotImplementedException();
+            for(int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i]%2 == 1)
+                {
+                    for (int j = i + 1; j < nums.Length; j++)
+                    {
+                        if (nums[j] % 2 == 0) { (nums[i], nums[j]) = (nums[j], nums[i]); }
+                    }
+                }
+            }
+            return nums;
         }
 
         /// <summary>
@@ -645,7 +719,16 @@ namespace Exercises.Level1
         /// </summary>
         public string[] FizzBuzz(int start, int end)
         {
-            throw new NotImplementedException();
+            int n = 0;
+            string[] rez = new string[end - start];
+            for(int i=0;i<end-start;i++)
+            {
+                if ((start + i) % 3 == 0) { rez[i] = "Fizz"; n++; }
+                if ((start + i) % 5 == 0) { rez[i] = rez[i] + "Buzz"; n++; }
+                if (n == 0) { rez[i] = $"{start + i}"; }
+                n = 0;
+            }
+            return rez;
         }
     }
 }
