@@ -511,19 +511,15 @@ namespace Exercises.Level1
         {
             // vēl nav
             int n = 0;
+            int test = 0;
             for (int i = 0; i < nums.Length; i++)
             {
                 if(nums[i]%10==0)
                 {
                     n = nums[i];
-                    if (i == nums.Length-1) { break; }
-                    while (nums[i+1] % 10 != 0)
-                    {
-                        nums[i+1] = n;
-                        i++;
-                        if (i+1==nums.Length) { break; }
-                    }
+                    test++;
                 }
+                if(test>0) { nums[i] = n; }
             }
             return nums;
         }
@@ -540,16 +536,13 @@ namespace Exercises.Level1
         public int[] Pre4(int[] nums)
         {
             int n = 0;
+            
             for(int i=0; i<nums.Length; i++)
             {
                 if (nums[i] == 4) { n=i; break; }
+                
             }
-            int[] rez = new int[n];
-            for(int i=0;i<rez.Length;i++)
-            {
-                rez[i]=nums[i];
-            }
-            return rez;
+            return nums[0..n];
         }
 
         /// <summary>
@@ -564,16 +557,12 @@ namespace Exercises.Level1
         public int[] Post4(int[] nums)
         {
             int n = 0;
-            for (int i = nums.Length-1; i >=0; i--)
+            int k = nums.Length;
+            for (int i = k-1; i >=0; i--)
             {
-                if (nums[i] == 4) { n = i; break; }
+                if (nums[i] == 4) { n = i+1; break; }
             }
-            int[] rez = new int[nums.Length-n-1];
-            for (int i = n+1; i < nums.Length; i++)
-            {
-                rez[i-n-1] = nums[i];
-            }
-            return rez;
+            return nums[n..k];
         }
 
         /// <summary>
@@ -609,15 +598,15 @@ namespace Exercises.Level1
         /// </summary>
         public int[] ZeroFront(int[] nums)
         {
-            for(int i=0;i<nums.Length;i++)
+            int k = 0;
+            for (int i=0;i<nums.Length-k;i++)
             {
-                if(nums[i]!=0)
+                if (nums[i] != 0)
                 {
-                    for(int j=i+1;j<nums.Length;j++)
-                    {
-                        if (nums[j] == 0) { (nums[i], nums[j]) = (nums[j], nums[i]); break; }
-                    }
-                }
+                    (nums[i], nums[nums.Length - 1 - k]) = (nums[nums.Length - 1 - k], nums[i]);
+                    k++;
+                    i--;
+                }   
             }
             return nums;
         }
@@ -635,18 +624,19 @@ namespace Exercises.Level1
         public int[] WithoutTen(int[] nums)
         {
             int n = 0;
-            for (int i = 0; i < nums.Length; i++)
+            int k = 0;
+            for (int i = 0; i < nums.Length-k; i++)
             {
-                if (nums[i] == 10)
+                n = i;
+                if (nums[i]%10 == 0)
                 {
                     nums[i] = 0;
-                    for (int j = i+1; j < nums.Length-n; j++)
-                    {
-                        (nums[j-1], nums[j]) = (nums[j], nums[j-1]);
-                    }
-                    n++;
+                    if (i+k==nums.Length-1) { break; }
+                    (nums[i], nums[i+1+k]) = (nums[i+1+k], nums[i]);
+                    k++;
                     i--;
                 }
+                if (n == i) { k = 0; }
             }
             return nums;
         }
@@ -662,19 +652,14 @@ namespace Exercises.Level1
         /// </summary>
         public int[] ZeroMax(int[] nums)
         {
+            Array.Reverse(nums);
             int n=0;
-            for(int i=0;i<nums.Length;i++)
+            for (int i = 0; i < nums.Length; i++)
             {
-                if(nums[i]==0)
-                {
-                for(int j=i+1;j<nums.Length;j++)
-                    {
-                        if (nums[j] % 2 == 1) { n = Math.Max(n, nums[j]); }
-                    }
-                    nums[i] = n;
-                    n = 0;
-                }
+                if (nums[i]%2==1) { n = Math.Max(n, nums[i]); }
+                if (nums[i]==0) { nums[i] = n; }
             }
+            Array.Reverse(nums);
             return nums;
         }
 
@@ -690,14 +675,14 @@ namespace Exercises.Level1
         /// </summary>
         public int[] EvenOdd(int[] nums)
         {
-            for(int i = 0; i < nums.Length; i++)
+            int k = 0;
+            for(int i = 0; i < nums.Length-k; i++)
             {
                 if (nums[i]%2 == 1)
                 {
-                    for (int j = i + 1; j < nums.Length; j++)
-                    {
-                        if (nums[j] % 2 == 0) { (nums[i], nums[j]) = (nums[j], nums[i]); }
-                    }
+                    (nums[i], nums[nums.Length - 1 - k]) = (nums[nums.Length - 1 - k], nums[i]);
+                    k++;
+                    i--;
                 }
             }
             return nums;
